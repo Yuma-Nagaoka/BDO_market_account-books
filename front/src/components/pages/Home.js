@@ -8,7 +8,7 @@ export default function Home() {
     const [bookList, setBookList] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/account_books')
+        axios.get('http://localhost:3000/account_books')
         .then((results) => {
             setBookList(results.data)
         })
@@ -18,13 +18,13 @@ export default function Home() {
     },[])
 
     function handleClick() { 
-        const url = 'http://localhost:3001/account_books/update';
+        const url = 'http://localhost:3000/account_books/update';
         
         axios.post(url)
         .then((results) => {
         if(results.status == 204){ 
             setResultStatus("統合取引所帳簿のデータを更新しました。") 
-            axios.get('http://localhost:3001/account_books')        //情報が更新できたならbookilistも更新する
+            axios.get('http://localhost:3000/account_books')        //情報が更新できたならbookilistも更新する
             .then((results) => {
                 setBookList(results.data)
             })

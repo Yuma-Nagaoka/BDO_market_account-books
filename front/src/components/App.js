@@ -1,7 +1,7 @@
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Book from './pages/Book'
-import Book_anot from './pages/Book_anot'
 import Book3 from './pages/Book3'
 import Header from './modules/Header'
 import Footer from './modules/Footer'
