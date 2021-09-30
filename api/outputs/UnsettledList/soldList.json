@@ -1,0 +1,42 @@
+[
+  {
+    "sellNo": 53710983,
+    "leftCount": 0,
+    "pricePerOne": 590000,
+    "soldCount": 5,
+    "accumulateMoneyCount": 2950000,
+    "isSealed": false,
+    "enchantNeedCount": 0,
+    "enchantMaterialPrice": 0,
+    "ringBuff": false,
+    "keyType": 0,
+    "mainKey": 4269,
+    "subKey": 0,
+    "count": 0,
+    "name": "翡翠珊瑚の塊",
+    "grade": 0,
+    "mainCategory": 25,
+    "subCategory": 0,
+    "chooseKey": 0
+  },
+  {
+    "sellNo": 52257032,
+    "leftCount": 0,
+    "pricePerOne": 25500,
+    "soldCount": 1,
+    "accumulateMoneyCount": 25500,
+    "isSealed": false,
+    "enchantNeedCount": 0,
+    "enchantMaterialPrice": 0,
+    "ringBuff": false,
+    "keyType": 0,
+    "mainKey": 719024,
+    "subKey": 0,
+    "count": 0,
+    "name": "クレアビツアリ",
+    "grade": 1,
+    "mainCategory": 5,
+    "subCategory": 0,
+    "chooseKey": 0
+  }
+]

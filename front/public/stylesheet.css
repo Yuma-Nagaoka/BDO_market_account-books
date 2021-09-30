@@ -1,0 +1,66 @@
+/* .language {
+    height: 400px;
+    width: 810px;
+    padding: 0 70px;
+    margin: auto;
+}
+
+.language-item {
+width: 240px;
+height: 250px;
+background: #ffffff;
+margin: 15px;
+float: left;
+box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+border-radius: 3px;
+position: relative;
+}
+
+.language-name {
+position: absolute;
+left: 0;
+right: 0;
+top: 40px;
+margin: auto;
+text-align: center;
+}*/
+
+/* .bookList {
+    height: 400px;
+    width: 810px;
+    padding: 0 70px;
+    margin: auto;
+}
+
+.book-item {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    height: 50px;
+    background: #ffffff;
+    margin: 15px;
+    float: left;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+    border-radius: 3px;
+    position: relative;
+}
+
+.book-date {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 15px;
+    margin: auto;
+    text-align: center;
+} */
+
+h1 {
+    color:darkgreen;
+  }
+
+/* .accountBook {
+    height: 400px;
+    width: 810px;
+    padding: 0 70px;
+    margin: auto;
+} */

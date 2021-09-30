@@ -1,0 +1,24 @@
+[
+  {
+    "sellNo": 52763847,
+    "leftCount": 0,
+    "pricePerOne": 945,
+    "soldCount": 1667,
+    "accumulateMoneyCount": 1575315,
+    "isSealed": false,
+    "enchantNeedCount": 0,
+    "enchantMaterialPrice": 0,
+    "ringBuff": false,
+    "keyType": 0,
+    "mainKey": 5439,
+    "subKey": 0,
+    "count": 0,
+    "name": "野生野草",
+    "grade": 0,
+    "mainCategory": 25,
+    "subCategory": 0,
+    "chooseKey": 0,
+    "date": "2021-09-08",
+    "time": "20:08:17"
+  }
+]

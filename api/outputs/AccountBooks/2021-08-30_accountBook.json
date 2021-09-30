@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "date": "2021-09-25",
+      "time": "15:48:55",
+      "type": "sell",
+      "name": "太い釣り竿",
+      "pricePerOne": 1500,
+      "soldCount": 1,
+      "accumulateMoneyCount": 1500
+    }
+  ],
+  "BOP": 1500
+}

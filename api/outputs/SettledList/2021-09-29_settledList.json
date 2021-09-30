@@ -1,0 +1,43 @@
+[
+  {
+    "buyNo": 13078715,
+    "leftCount": 9,
+    "boughtCount": 1,
+    "pricePerOne": 40900,
+    "addEnchantPrice": 0,
+    "registerMoneyCount": 368100,
+    "keyType": 0,
+    "mainKey": 6709,
+    "subKey": 0,
+    "count": 0,
+    "name": "特級イチゴの種",
+    "grade": 2,
+    "mainCategory": 25,
+    "subCategory": 0,
+    "chooseKey": 0,
+    "date": "2021-09-29",
+    "time": "00:34:54"
+  },
+  {
+    "sellNo": 51949962,
+    "leftCount": 0,
+    "pricePerOne": 22400,
+    "soldCount": 2,
+    "accumulateMoneyCount": 44800,
+    "isSealed": false,
+    "enchantNeedCount": 0,
+    "enchantMaterialPrice": 0,
+    "ringBuff": false,
+    "keyType": 0,
+    "mainKey": 692506,
+    "subKey": 0,
+    "count": 0,
+    "name": "ネシャル禁戒",
+    "grade": 1,
+    "mainCategory": 5,
+    "subCategory": 0,
+    "chooseKey": 0,
+    "date": "2021-09-29",
+    "time": "00:37:41"
+  }
+]

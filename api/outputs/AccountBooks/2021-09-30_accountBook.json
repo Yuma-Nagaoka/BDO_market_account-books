@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "id": 0,
+      "date": "2021-09-30",
+      "time": "19:26:13",
+      "type": "販売",
+      "name": "HPポーション(超)",
+      "pricePerOne": "1,360",
+      "tradeCount": "1",
+      "accumulateMoneyCount": "1,360"
+    }
+  ],
+  "BOP": 1360
+}

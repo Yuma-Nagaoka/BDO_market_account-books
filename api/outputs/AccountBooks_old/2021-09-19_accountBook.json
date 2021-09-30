@@ -1,0 +1,56 @@
+[
+  {
+    "date": "2021-09-19",
+    "time": "21:31:51",
+    "type": "sell",
+    "name": "ブラックバード古剣",
+    "pricePerOne": 19600,
+    "soldCount": 1,
+    "accumulateMoneyCount": 19600
+  },
+  {
+    "date": "2021-09-19",
+    "time": "21:31:51",
+    "type": "sell",
+    "name": "バドゥム禁戒",
+    "pricePerOne": 19600,
+    "soldCount": 1,
+    "accumulateMoneyCount": 19600
+  },
+  {
+    "date": "2021-09-19",
+    "time": "21:31:51",
+    "type": "sell",
+    "name": "エルシュモーニングスター",
+    "pricePerOne": 20300,
+    "soldCount": 1,
+    "accumulateMoneyCount": 20300
+  },
+  {
+    "date": "2021-09-19",
+    "time": "21:31:51",
+    "type": "sell",
+    "name": "パウクラトゥム",
+    "pricePerOne": 17100,
+    "soldCount": 1,
+    "accumulateMoneyCount": 17100
+  },
+  {
+    "date": "2021-09-19",
+    "time": "21:31:51",
+    "type": "buy",
+    "name": "特級イチゴの種",
+    "pricePerOne": 48500,
+    "boughtCount": 1,
+    "accumulateMoneyCount": 48500
+  },
+  {
+    "date": "2021-09-19",
+    "time": "21:31:51",
+    "type": "buy",
+    "name": "特級ヒマワリの種",
+    "pricePerOne": 94500,
+    "boughtCount": 10,
+    "accumulateMoneyCount": 945000
+  }
+]

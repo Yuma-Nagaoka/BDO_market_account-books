@@ -1,0 +1,22 @@
+[
+  {
+    "sellNo": 51756727,
+    "leftCount": 0,
+    "pricePerOne": 1500,
+    "soldCount": 1,
+    "accumulateMoneyCount": 0,
+    "isSealed": false,
+    "enchantNeedCount": 0,
+    "enchantMaterialPrice": 0,
+    "ringBuff": false,
+    "keyType": 0,
+    "mainKey": 16147,
+    "subKey": 0,
+    "count": 0,
+    "name": "太い釣り竿",
+    "grade": 1,
+    "mainCategory": 40,
+    "subCategory": 0,
+    "chooseKey": 0
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "date": "2021-09-21",
+      "time": "23:29:42",
+      "type": "buy",
+      "name": "特級イチゴ",
+      "pricePerOne": 12400,
+      "boughtCount": 500,
+      "accumulateMoneyCount": 6200000
+    }
+  ],
+  "BOP": -6200000
+}

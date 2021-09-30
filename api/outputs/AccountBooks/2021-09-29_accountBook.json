@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "date": "2021-09-29",
+      "time": "23:36:05",
+      "type": "購入",
+      "name": "特級イチゴの種",
+      "pricePerOne": "40,900",
+      "tradeCount": "1",
+      "accumulateMoneyCount": "40,900"
+    },
+    {
+      "date": "2021-09-29",
+      "time": "23:36:05",
+      "type": "販売",
+      "name": "ネシャル禁戒",
+      "pricePerOne": "22,400",
+      "tradeCount": "2",
+      "accumulateMoneyCount": "44,800"
+    }
+  ],
+  "BOP": 3900
+}

@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "date": "2021-09-25",
+      "time": "20:31:50",
+      "type": "sell",
+      "name": "太い釣り竿",
+      "pricePerOne": 1500,
+      "soldCount": 1,
+      "accumulateMoneyCount": 1500
+    },
+    {
+      "date": "2021-09-25",
+      "time": "20:31:50",
+      "type": "buy",
+      "name": "特級ヒマワリの種",
+      "pricePerOne": 74500,
+      "boughtCount": 10,
+      "accumulateMoneyCount": 745000
+    }
+  ],
+  "BOP": -743500
+}
