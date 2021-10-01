@@ -64,15 +64,13 @@ export default function Book3(props) {
     const [book_origin, setBook_origin] = useState([]);
     const [bop, setBop] = useState(0);
     const [bop_arr, setBop_arr] = useState([]);
-    let tmp_book = []
-    let tmp_item = {}
     const url = 'http://localhost:3001/account_books/' + props.match.params.date;
 
     const numberFormat = (num) => {
         if (num == null) {
             return 0
         }
-        return Number(num).toLocaleString();
+        return Number(num.replace(",", "")).toLocaleString();
     }
 
     const bookFormat = (old_book) => {
@@ -93,57 +91,15 @@ export default function Book3(props) {
         
         axios.get(url)
         .then((results) => {
-            // setBook_origin(results.data.items)
-            // bookFormat()
-            console.log("test")
-            // console.log(book_origin)
             setBook(results.data.items)
             setBop(results.data.BOP)
             setBop_arr([{BOP: bop}])
             
-            // book_origin.forEach((row) => {
-            //     // tmp_item = {
-            //     //     "id": row.id,
-            //     //     "date": row.d    ate,
-            //     //     "time": row.time,
-            //     //     "type": row.type,
-            //     //     "name": row.name,
-            //     //     "pricePerOne": numberFormat(row.pricePerOne),
-            //     //     "tradeCount": numberFormat(row.tradeCount),
-            //     //     "accumulateMoneyCount": numberFormat(row.accumulateMoneyCount)
-            //     // }
-            //     // console.log(tmp_item)
-            //     console.log(row)
-            // })
-            // console.log(tmp_book)
-            // setBook(tmp_book)
-            // console.log(book)
-            // dataBOP = [{BOP: bop}]
-            // console.log(book)
-            // setBook(book_origin => ({
-            //     options: ook_origin.map(
-            //     obj => (obj.id === 1 ? Object.assign(obj, { birthday: “19920912” }) : obj)
-            //     )
-            // }));
         })
         .catch((data) =>{
         console.log(data)
         })
 
-        // tmp_book = book_origin.map((row) => {
-        //     return tmp_item = {
-        //         "id": row.id,
-        //         "date": row.date,
-        //         "time": row.time,
-        //         "type": row.type,
-        //         "name": row.name,
-        //         "pricePerOne": numberFormat(row.pricePerOne),
-        //         "tradeCount": numberFormat(row.tradeCount),
-        //         "accumulateMoneyCount": numberFormat(row.accumulateMoneyCount)
-        //     }
-        // })
-
-        // setBook(tmp_book)
 
     },[])
 
