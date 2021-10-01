@@ -4,11 +4,12 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 
 export default function Home() {
+    const host = 'http://ec2-3-115-26-155.ap-northeast-1.compute.amazonaws.com:80'
     const [resultStatus, setResultStatus] = useState("");
     const [bookList, setBookList] = useState([]);
 
     useEffect(() => {
-        axios.get('http://ec2-3-115-26-155.ap-northeast-1.compute.amazonaws.com:80/account_books')
+        axios.get('/account_books')
         .then((results) => {
             setBookList(results.data)
         })
@@ -18,13 +19,13 @@ export default function Home() {
     },[])
 
     function handleClick() { 
-        const url = 'http://ec2-3-115-26-155.ap-northeast-1.compute.amazonaws.com:80/account_books/update';
+        const url = host + '/account_books/update';
         
         axios.post(url)
         .then((results) => {
         if(results.status == 204){ 
             setResultStatus("統合取引所帳簿のデータを更新しました。") 
-            axios.get('http://ec2-3-115-26-155.ap-northeast-1.compute.amazonaws.com:80/account_books')        //情報が更新できたならbookilistも更新する
+            axios.get(host + '/account_books')        //情報が更新できたならbookilistも更新する
             .then((results) => {
                 setBookList(results.data)
             })

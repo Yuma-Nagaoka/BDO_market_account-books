@@ -60,11 +60,12 @@ const tableIcons = {
 
 
 export default function Book3(props) {
+    const host = 'http://ec2-3-115-26-155.ap-northeast-1.compute.amazonaws.com:80'
     const [book, setBook] = useState([]);
     const [book_origin, setBook_origin] = useState([]);
     const [bop, setBop] = useState(0);
     const [bop_arr, setBop_arr] = useState([]);
-    const url = 'http://ec2-3-115-26-155.ap-northeast-1.compute.amazonaws.com:80/account_books/' + props.match.params.date;
+    const url = host + '/account_books/' + props.match.params.date;
 
     const numberFormat = (num) => {
         if (num == null) {
@@ -161,7 +162,7 @@ export default function Book3(props) {
                             setBook([...book, bookFormat(newBook)]);
                             console.log(newBook)
 
-                            const url_create = 'http://ec2-3-115-26-155.ap-northeast-1.compute.amazonaws.com:80/account_books/' + props.match.params.date;
+                            const url_create = host + '/account_books/' + props.match.params.date;
                             axios.post(url_create, newBook)
                             .then((response) => {
                                 console.log(response.data)
@@ -181,7 +182,7 @@ export default function Book3(props) {
                             bookUpdate[index] = bookFormat(newBook);
                             setBook([...bookUpdate]);
 
-                            const url_update = 'http://ec2-3-115-26-155.ap-northeast-1.compute.amazonaws.com:80/account_books/' + props.match.params.date;
+                            const url_update = host + '/account_books/' + props.match.params.date;
                             newBook.index= index
                             axios.patch(url_update, newBook)
                             .then((response) => {
@@ -202,7 +203,7 @@ export default function Book3(props) {
                             bookDelete.splice(index, 1);
                             setBook([...bookDelete]);
 
-                            const url_delete = 'http://ec2-3-115-26-155.ap-northeast-1.compute.amazonaws.com:80/account_books/' + props.match.params.date;
+                            const url_delete = host + '/account_books/' + props.match.params.date;
                             axios.delete(url_delete, {data: {index: index}}) //左辺のindexはキー名、右辺は変数
                             .then((response) => {
                                 console.log(response.data)
