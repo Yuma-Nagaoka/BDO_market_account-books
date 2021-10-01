@@ -61,40 +61,60 @@ const tableIcons = {
 
 export default function Book3(props) {
     const [book, setBook] = useState([]);
+    const [book_origin, setBook_origin] = useState([]);
     const [bop, setBop] = useState(0);
     const [bop_arr, setBop_arr] = useState([]);
     const url = 'http://ec2-3-115-26-155.ap-northeast-1.compute.amazonaws.com:80/account_books/' + props.match.params.date;
 
+    const numberFormat = (num) => {
+        if (num == null) {
+            return 0
+        }
+        return Number(num.replace(",", "")).toLocaleString();
+    }
+
+    const bookFormat = (old_book) => {
+        let new_book = {}
+        return new_book = {
+                "id": old_book.id,
+                "date": old_book.date,
+                "time": old_book.time,
+                "type": old_book.type,
+                "name": old_book.name,
+                "pricePerOne": numberFormat(old_book.pricePerOne),
+                "tradeCount": numberFormat(old_book.tradeCount),
+                "accumulateMoneyCount": numberFormat(old_book.accumulateMoneyCount)
+        }
+    }
+
     useEffect(() => {
+        
         axios.get(url)
         .then((results) => {
             setBook(results.data.items)
             setBop(results.data.BOP)
             setBop_arr([{BOP: bop}])
-            book.map((row) => {
-                row.pricePerOne.toLocaleString()
-            })
             
-            // dataBOP = [{BOP: bop}]
-            // console.log(book)
         })
         .catch((data) =>{
         console.log(data)
         })
+
+
     },[])
 
-    const handleAdd = () => {
-        setBook([...book, {
-            "id": book.length,
-            "date": "",
-            "time": "",
-            "type": "",
-            "name": "",
-            "pricePerOne": 0,
-            "boughtCount": 0,
-            "accumulateMoneyCount": 0
-        }])
-    }
+    // const handleAdd = () => {
+    //     setBook([...book, {
+    //         "id": book.length,
+    //         "date": "",
+    //         "time": "",
+    //         "type": "",
+    //         "name": "",
+    //         "pricePerOne": 0,
+    //         "boughtCount": 0,
+    //         "accumulateMoneyCount": 0
+    //     }])
+    // }
 
         // const handleEdit = (index) => (event) => {
         //     // event.stopPropagation();
@@ -113,11 +133,11 @@ export default function Book3(props) {
           <MaterialTable icons={tableIcons} title={props.match.params.date}
             columns={[
               { title: "アイテム名", field: "name" },
-              { title: "価格", field: "pricePerOne" },
-              { title: "個数", field: "tradeCount" },
-              { title: "小計", field: "accumulateMoneyCount" },
+              { title: "価格", field: "pricePerOne"},
+              { title: "個数", field: "tradeCount"},
+              { title: "小計", field: "accumulateMoneyCount"},
               { title: "清算時", field: "time" },
-              { title: "購入/販売", field: "type" },
+              { title: "購入/販売", field: "type", lookup: { '購入': '購入', '販売': '販売' },},
             ]}
             data={book}
             editable={{
@@ -138,7 +158,8 @@ export default function Book3(props) {
                 onRowAdd: newBook =>
                     new Promise((resolve, reject) => {
                         setTimeout(() => {
-                            setBook([...book, newBook]);
+                            setBook([...book, bookFormat(newBook)]);
+                            console.log(newBook)
 
                             const url_create = 'http://ec2-3-115-26-155.ap-northeast-1.compute.amazonaws.com:80/account_books/' + props.match.params.date;
                             axios.post(url_create, newBook)
@@ -157,7 +178,7 @@ export default function Book3(props) {
                         setTimeout(() => {
                             const bookUpdate = [...book];
                             const index = oldBook.tableData.id;
-                            bookUpdate[index] = newBook;
+                            bookUpdate[index] = bookFormat(newBook);
                             setBook([...bookUpdate]);
 
                             const url_update = 'http://ec2-3-115-26-155.ap-northeast-1.compute.amazonaws.com:80/account_books/' + props.match.params.date;

@@ -17,9 +17,9 @@ class Update_data
         update_item.store("time", params[:time])
         update_item.store("type", params[:type]) 
         update_item.store("name", params[:name])
-        update_item.store("pricePerOne", params[:pricePerOne].to_s(:delimited))
-        update_item.store("tradeCount", params[:tradeCount].to_s(:delimited))
-        update_item.store("accumulateMoneyCount", params[:accumulateMoneyCount].to_s(:delimited))
+        update_item.store("pricePerOne", params[:pricePerOne].delete(",").to_i.to_s(:delimited))
+        update_item.store("tradeCount", params[:tradeCount].delete(",").to_i.to_s(:delimited))
+        update_item.store("accumulateMoneyCount", params[:accumulateMoneyCount].delete(",").to_i.to_s(:delimited))
 
         old_accountBook["items"][params[:tableData][:id]] = update_item     #params[:tableData][:id]はindexと同等
         new_accountBook = old_accountBook
