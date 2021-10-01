@@ -14,7 +14,7 @@ default: &default
 #   database: db/development.sqlite3
 
 development:
-  adapter: mysql2
+  adapter: sqlite3
   encoding: utf8
   database: blog_development
   pool: 5
