@@ -3,6 +3,7 @@ require 'uri'
 require 'json'
 require './lib/data_bdo'
 require "date"
+require 'logger'
 
 class Get_data
 
