@@ -34,6 +34,7 @@ class Get_data
         File.open("./storage/.cookies") do |file|#cookieの読み込み
             cookies = file.gets
         end
+        p cookies
 
         # p cookies
         
