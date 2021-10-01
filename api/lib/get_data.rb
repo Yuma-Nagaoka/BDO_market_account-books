@@ -32,9 +32,9 @@ class Get_data
         cookies =  ""
 
         File.open("./storage/.cookies") do |file|#cookieの読み込み
-            cookies = file.gets
+            cookies = file.gets.chomp!
         end
-        p cookies
+        console.log(cookies)
 
         # p cookies
         
