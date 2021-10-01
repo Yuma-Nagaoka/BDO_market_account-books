@@ -21,7 +21,7 @@ class Update_data
         update_item.store("tradeCount", params[:tradeCount].delete(",").to_i.to_s(:delimited))
         update_item.store("accumulateMoneyCount", params[:accumulateMoneyCount].delete(",").to_i.to_s(:delimited))
 
-        old_accountBook["items"][params[:tableData][:id]] = update_item     #params[:tableData][:id]はindexと同等
+        old_accountBook["items"][params[:index]] = update_item     #params[:tableData][:id]はindexと同等
         new_accountBook = old_accountBook
         
         File.open("./outputs/AccountBooks/#{params[:date]}_accountBook.json", "w") do |file|
