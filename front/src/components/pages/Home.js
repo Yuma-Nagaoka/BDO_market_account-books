@@ -9,7 +9,7 @@ export default function Home() {
     const [bookList, setBookList] = useState([]);
 
     useEffect(() => {
-        axios.get('/account_books')
+        axios.get(host + '/account_books')
         .then((results) => {
             setBookList(results.data)
         })
