@@ -182,6 +182,7 @@ export default function Book3(props) {
                             setBook([...bookUpdate]);
 
                             const url_update = 'http://localhost:3001/account_books/' + props.match.params.date;
+                            newBook.index= index
                             axios.patch(url_update, newBook)
                             .then((response) => {
                                 console.log(response.data)

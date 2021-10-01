@@ -33,12 +33,12 @@
     {
       "id": 3,
       "date": "2021-10-01",
-      "time": null,
-      "type": null,
+      "time": "21:40",
+      "type": "購入",
       "name": null,
       "pricePerOne": "10,000",
-      "tradeCount": "0",
-      "accumulateMoneyCount": "0"
+      "tradeCount": "1",
+      "accumulateMoneyCount": "10,000"
     }
   ],
   "BOP": -368100
