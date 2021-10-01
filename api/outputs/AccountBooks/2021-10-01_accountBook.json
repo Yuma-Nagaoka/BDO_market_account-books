@@ -3,42 +3,12 @@
     {
       "id": 0,
       "date": "2021-10-01",
-      "time": "18:50:22",
+      "time": "22:25:44",
       "type": "購入",
       "name": "特級イチゴの種",
       "pricePerOne": "40,900",
       "tradeCount": "9",
       "accumulateMoneyCount": "368,100"
-    },
-    {
-      "id": 1,
-      "date": "2021-10-01",
-      "time": null,
-      "type": null,
-      "name": "test",
-      "pricePerOne": "10,000",
-      "tradeCount": "1",
-      "accumulateMoneyCount": "10,000"
-    },
-    {
-      "id": 2,
-      "date": "2021-10-01",
-      "time": null,
-      "type": null,
-      "name": "test",
-      "pricePerOne": "10,000",
-      "tradeCount": "1",
-      "accumulateMoneyCount": "10,000"
-    },
-    {
-      "id": 3,
-      "date": "2021-10-01",
-      "time": "21:40",
-      "type": "購入",
-      "name": null,
-      "pricePerOne": "10,000",
-      "tradeCount": "1",
-      "accumulateMoneyCount": "10,000"
     }
   ],
   "BOP": -368100
