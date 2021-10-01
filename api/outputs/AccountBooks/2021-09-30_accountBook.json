@@ -6,19 +6,9 @@
       "time": "19:26:13",
       "type": "販売",
       "name": "HPポーション(超)",
-      "pricePerOne": "1,360",
-      "tradeCount": "1",
-      "accumulateMoneyCount": "1,360"
-    },
-    {
-      "id": 1,
-      "date": "2021-09-30",
-      "time": null,
-      "type": null,
-      "name": "test",
-      "pricePerOne": "1,000",
-      "tradeCount": "1",
-      "accumulateMoneyCount": "1,000"
+      "pricePerOne": 1360,
+      "tradeCount": 1,
+      "accumulateMoneyCount": 1360
     }
   ],
   "BOP": 1360

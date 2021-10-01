@@ -280,26 +280,6 @@
     "chooseKey": 0
   },
   {
-    "sellNo": 52257032,
-    "leftCount": 0,
-    "pricePerOne": 25500,
-    "soldCount": 1,
-    "accumulateMoneyCount": 25500,
-    "isSealed": false,
-    "enchantNeedCount": 0,
-    "enchantMaterialPrice": 0,
-    "ringBuff": false,
-    "keyType": 0,
-    "mainKey": 719024,
-    "subKey": 0,
-    "count": 0,
-    "name": "クレアビツアリ",
-    "grade": 1,
-    "mainCategory": 5,
-    "subCategory": 0,
-    "chooseKey": 0
-  },
-  {
     "sellNo": 52082771,
     "leftCount": 1,
     "pricePerOne": 2580000,
