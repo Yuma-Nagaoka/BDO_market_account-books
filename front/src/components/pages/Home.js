@@ -31,7 +31,7 @@ export default function Home() {
             .then((results) => {
                 if(results.status == 204){ 
                     setResultStatus("統合取引所帳簿のデータを更新しました。") 
-                    axios.get('http://localhost:3001/account_books')        //情報が更新できたならbookilistも更新する
+                    axios.get(host + '/account_books')        //情報が更新できたならbookilistも更新する
                     .then((results) => {
                         setBookList(results.data)
                     })
