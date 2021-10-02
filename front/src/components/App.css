@@ -71,15 +71,16 @@
 }
 
 .btns {
+  
+  /* justify-content: space-evenly; */
+}
+
+.download_btn {
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flex;
   display: -o-flex;
   display: flex;
-  /* justify-content: space-evenly; */
-}
-
-.download_btn {
   position: relative;
   top: 20px;
   margin-left: auto;
@@ -98,6 +99,14 @@
   padding-left: 50px;
 }
 
-/* .start_btn {
-  padding:1em 1em;
-} */
+.bop {
+  width: 405px;
+}
+
+.mgr-10 {
+  margin-right : 30px;
+}
+
+.red {
+  color: red;
+}
