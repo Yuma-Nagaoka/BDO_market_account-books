@@ -4,14 +4,18 @@ import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
+import { apiURL } from '../../config'
 
 export default function Home() {
     const [resultStatus, setResultStatus] = useState("");
     const [bookList, setBookList] = useState([]);
     const [onUpdate, setOnUpdate] = useState(false);
+    const client = axios.create({
+        baseURL: apiURL
+    })
 
     useEffect(() => {
-        axios.get('http://localhost:3001/account_books')
+        client.get('/account_books')
         .then((results) => {
             setBookList(results.data)
         })
@@ -23,14 +27,13 @@ export default function Home() {
     function handleClick() {
         setOnUpdate(true); 
         setResultStatus("");
-        const url = 'http://localhost:3001/account_books/update';
         
         setTimeout(() => {
-            axios.post(url)
+            client.post('/account_books/update')
             .then((results) => {
                 if(results.status == 204){ 
                     setResultStatus("統合取引所帳簿のデータを更新しました。") 
-                    axios.get('http://localhost:3001/account_books')        //情報が更新できたならbookilistも更新する
+                    client.get('/account_books')        //情報が更新できたならbookilistも更新する
                     .then((results) => {
                         setBookList(results.data)
                     })

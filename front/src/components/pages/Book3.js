@@ -25,6 +25,7 @@ import AddIcon from '@mui/icons-material/Add';
 import ReactExport from "react-export-excel";
 import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { apiURL } from '../../config'
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -64,7 +65,10 @@ export default function Book3(props) {
     const [book_origin, setBook_origin] = useState([]);
     const [bop, setBop] = useState(0);
     const [bop_arr, setBop_arr] = useState([]);
-    const url = 'http://localhost:3001/account_books/' + props.match.params.date;
+    // const url = 'http://localhost:3001/account_books/' + props.match.params.date;
+    const client = axios.create({
+        baseURL: apiURL
+    })
 
     const numberFormat = (num) => {
         if (num == null) {
@@ -89,7 +93,7 @@ export default function Book3(props) {
 
     useEffect(() => {
         
-        axios.get(url)
+        client.get('/account_books/' + props.match.params.date)
         .then((results) => {
             setBook(results.data.items)
             setBop(results.data.BOP)
@@ -161,8 +165,7 @@ export default function Book3(props) {
                             setBook([...book, bookFormat(newBook)]);
                             console.log(newBook)
 
-                            const url_create = 'http://localhost:3001/account_books/' + props.match.params.date;
-                            axios.post(url_create, newBook)
+                            client.post('/account_books/' + props.match.params.date, newBook)
                             .then((response) => {
                                 console.log(response.data)
                             })
@@ -181,9 +184,9 @@ export default function Book3(props) {
                             bookUpdate[index] = bookFormat(newBook);
                             setBook([...bookUpdate]);
 
-                            const url_update = 'http://localhost:3001/account_books/' + props.match.params.date;
+                            // const url_update = 'http://localhost:3001/account_books/' + props.match.params.date;
                             newBook.index= index
-                            axios.patch(url_update, newBook)
+                            client.patch('/account_books/' + props.match.params.date, newBook)
                             .then((response) => {
                                 console.log(response.data)
                             })
@@ -202,8 +205,8 @@ export default function Book3(props) {
                             bookDelete.splice(index, 1);
                             setBook([...bookDelete]);
 
-                            const url_delete = 'http://localhost:3001/account_books/' + props.match.params.date;
-                            axios.delete(url_delete, {data: {index: index}}) //左辺のindexはキー名、右辺は変数
+                            // const url_delete = 'http://localhost:3001/account_books/' + props.match.params.date;
+                            client.delete('/account_books/' + props.match.params.date, {data: {index: index}}) //左辺のindexはキー名、右辺は変数
                             .then((response) => {
                                 console.log(response.data)
                             })
