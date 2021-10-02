@@ -10,8 +10,8 @@ import { Link, useHistory } from 'react-router-dom'
 
 export default function ButtonAppBar() {
     const history = useHistory();
-    function handleClick() { 
-        history.push('/HowTo');
+    function handleClick(where) { 
+        history.push('/'+ where);
     }
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -27,12 +27,14 @@ export default function ButtonAppBar() {
                 <MenuIcon />
             </IconButton> */}
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                <Link to={`/`} style={{ color: '#FFFF', textDecoration: 'none', float: 'left' }}>
+                <Link to={`/AccountBooks`} style={{ color: '#FFFF', textDecoration: 'none', float: 'left' }}>
                     BDO.AccountBooks
                     {/* <div align="left">BDO.AccountBooks</div> */}
                 </Link>
             </Typography>
-            <Button color="inherit" style={{textTransform: 'none'}}　onClick={() => {handleClick()}}>使い方</Button>
+            <Button color="inherit" style={{textTransform: 'none'}}　onClick={() => {handleClick('AccountBooks')}}>帳簿</Button>
+            <Button color="inherit" style={{textTransform: 'none'}}　onClick={() => {handleClick('')}}>About</Button>
+            <Button color="inherit" style={{textTransform: 'none'}}　onClick={() => {handleClick('HowTo')}}>使い方</Button>
             </Toolbar>
         </AppBar>
         </Box>

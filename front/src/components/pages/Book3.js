@@ -23,7 +23,7 @@ import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import ReactExport from "react-export-excel";
-import Button from '@mui/material/Button';
+import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const ExcelFile = ReactExport.ExcelFile;
@@ -31,7 +31,7 @@ const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
 const tableIcons = {
-    Add: forwardRef((props, ref) => <AddCircleIcon color="primary" style={{ fontSize: "40px" }} {...props} ref={ref} />),
+    Add: forwardRef((props, ref) => <AddCircleIcon color="primary" style={{ color: "#1e90ff", fontSize: "40px" }} {...props} ref={ref} />),
     // Add: forwardRef((props, ref) =>
     //         <div>
     //         {/* アイテムの追加 */}
@@ -130,7 +130,7 @@ export default function Book3(props) {
         // }
 
     return (
-        <div className="bookList" style={{ maxWidth: "100%" }}>
+        <div className="container" style={{ maxWidth: "100%" }}>
           <MaterialTable icons={tableIcons} title={props.match.params.date}
             columns={[
               { title: "アイテム名", field: "name" },
@@ -231,7 +231,7 @@ export default function Book3(props) {
                 </div> */}
 
                 <div className="download_btn">
-                    <ExcelFile filename={props.match.params.date + "黒い砂漠帳簿"} element={<Button variant="contained">Excel出力</Button>}>
+                    <ExcelFile filename={props.match.params.date + "黒い砂漠帳簿"} element={<Button variant="contained"style={{backgroundColor: "#1e90ff", color: "white"}}>Excel出力</Button>}>
                         <ExcelSheet data={book} name="帳簿">
                             <ExcelColumn label="アイテム名" value="name" style={{ font: {sz: "24", name: "MS PGothic"} }}/>
                             <ExcelColumn label="価格" value="pricePerOne"/>
