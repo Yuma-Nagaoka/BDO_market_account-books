@@ -26,6 +26,13 @@ import ReactExport from "react-export-excel";
 import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { apiURL } from '../../config'
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -59,6 +66,14 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
+const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: 'black',
+    height: "100%",
+    paddingTop: 3,
+  }));
 
 export default function Book3(props) {
     const [book, setBook] = useState([]);
@@ -97,7 +112,7 @@ export default function Book3(props) {
         .then((results) => {
             setBook(results.data.items)
             setBop(results.data.BOP)
-            setBop_arr([{BOP: bop}])
+            setBop_arr([{"BOP": results.data.BOP}])
             
         })
         .catch((data) =>{
@@ -134,106 +149,124 @@ export default function Book3(props) {
 
     return (
         <div className="container" style={{ maxWidth: "100%" }}>
-          <MaterialTable icons={tableIcons} title={props.match.params.date}
-            columns={[
-              { title: "アイテム名", field: "name" },
-              { title: "価格", field: "pricePerOne"},
-              { title: "個数", field: "tradeCount"},
-              { title: "小計", field: "accumulateMoneyCount"},
-              { title: "清算時", field: "time" },
-              { title: "購入/販売", field: "type", lookup: { '購入': '購入', '販売': '販売' },},
-            ]}
-            data={book}
-            editable={{
-                // isEditable: rowData => rowData.name === 'a', // only name(a) rows would be editable
-                // isEditHidden: rowData => rowData.name === 'x',
-                // isDeletable: rowData => rowData.name === 'b', // only name(b) rows would be deletable,
-                // isDeleteHidden: rowData => rowData.name === 'y',
-                // onBulkUpdate: changes => 
-                //     new Promise((resolve, reject) => {
-                //         setTimeout(() => {
-                //             // setBook([...data, newBook]);
-        
-                //             resolve();
-                //         }, 1000);
-                //     }),
-                onRowAddCancelled: rowData => console.log('Row adding cancelled'),
-                onRowUpdateCancelled: rowData => console.log('Row editing cancelled'),
-                onRowAdd: newBook =>
-                    new Promise((resolve, reject) => {
-                        setTimeout(() => {
-                            setBook([...book, bookFormat(newBook)]);
-                            console.log(newBook)
+            <MaterialTable icons={tableIcons} title={props.match.params.date}
+                columns={[
+                { title: "アイテム名", field: "name" },
+                { title: "価格", field: "pricePerOne"},
+                { title: "個数", field: "tradeCount"},
+                { title: "小計", field: "accumulateMoneyCount"},
+                { title: "清算時", field: "time" },
+                { title: "購入/販売", field: "type", lookup: { '購入': '購入', '販売': '販売' },},
+                ]}
+                data={book}
+                editable={{
+                    // isEditable: rowData => rowData.name === 'a', // only name(a) rows would be editable
+                    // isEditHidden: rowData => rowData.name === 'x',
+                    // isDeletable: rowData => rowData.name === 'b', // only name(b) rows would be deletable,
+                    // isDeleteHidden: rowData => rowData.name === 'y',
+                    // onBulkUpdate: changes => 
+                    //     new Promise((resolve, reject) => {
+                    //         setTimeout(() => {
+                    //             // setBook([...data, newBook]);
+            
+                    //             resolve();
+                    //         }, 1000);
+                    //     }),
+                    onRowAddCancelled: rowData => console.log('Row adding cancelled'),
+                    onRowUpdateCancelled: rowData => console.log('Row editing cancelled'),
+                    onRowAdd: newBook =>
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                setBook([...book, bookFormat(newBook)]);
+                                console.log(newBook)
 
-                            client.post('/account_books/' + props.match.params.date, newBook)
-                            .then((response) => {
-                                console.log(response.data)
-                            })
-                            .catch((data) =>{
-                                console.log(data)
-                            })
-                            
-                            resolve();
-                        }, 100);
-                    }),
-                onRowUpdate: (newBook, oldBook) =>
-                    new Promise((resolve, reject) => {
-                        setTimeout(() => {
-                            const bookUpdate = [...book];
-                            const index = oldBook.tableData.id;
-                            bookUpdate[index] = bookFormat(newBook);
-                            setBook([...bookUpdate]);
+                                client.post('/account_books/' + props.match.params.date, newBook)
+                                .then((response) => {
+                                    console.log(response.data)
+                                })
+                                .catch((data) =>{
+                                    console.log(data)
+                                })
+                                
+                                resolve();
+                            }, 100);
+                        }),
+                    onRowUpdate: (newBook, oldBook) =>
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                const bookUpdate = [...book];
+                                const index = oldBook.tableData.id;
+                                bookUpdate[index] = bookFormat(newBook);
+                                setBook([...bookUpdate]);
 
-                            // const url_update = 'http://localhost:3001/account_books/' + props.match.params.date;
-                            newBook.index= index
-                            client.patch('/account_books/' + props.match.params.date, newBook)
-                            .then((response) => {
-                                console.log(response.data)
-                            })
-                            .catch((data) =>{
-                                console.log(data)
-                            })
-        
-                            resolve();
-                        }, 100);
-                    }),
-                onRowDelete: oldBook =>
-                    new Promise((resolve, reject) => {
-                        setTimeout(() => {
-                            const bookDelete = [...book];
-                            const index = oldBook.tableData.id; //oldBook.tableData.idはidというよりindex.配列の番号そのもの
-                            bookDelete.splice(index, 1);
-                            setBook([...bookDelete]);
+                                // const url_update = 'http://localhost:3001/account_books/' + props.match.params.date;
+                                newBook.index= index
+                                client.patch('/account_books/' + props.match.params.date, newBook)
+                                .then((response) => {
+                                    console.log(response.data)
+                                })
+                                .catch((data) =>{
+                                    console.log(data)
+                                })
+            
+                                resolve();
+                            }, 100);
+                        }),
+                    onRowDelete: oldBook =>
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                const bookDelete = [...book];
+                                const index = oldBook.tableData.id; //oldBook.tableData.idはidというよりindex.配列の番号そのもの
+                                bookDelete.splice(index, 1);
+                                setBook([...bookDelete]);
 
-                            // const url_delete = 'http://localhost:3001/account_books/' + props.match.params.date;
-                            client.delete('/account_books/' + props.match.params.date, {data: {index: index}}) //左辺のindexはキー名、右辺は変数
-                            .then((response) => {
-                                console.log(response.data)
-                            })
-                            .catch((data) =>{
-                                console.log(data)
-                            })
-        
-                            resolve();
-                        }, 100);
-                    })
-            }}
-            options={{
-                search: false
-            }}
-          />
-
-            <div className="btns">
-                {/* <div className="add_btn">
-                    <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                        <Fab size="small" color="primary" aria-label="add" onClick={() => { handleAdd() }}>
-                            <AddIcon />
-                        </Fab>
-                    </Box>
-                </div> */}
+                                // const url_delete = 'http://localhost:3001/account_books/' + props.match.params.date;
+                                client.delete('/account_books/' + props.match.params.date, {data: {index: index}}) //左辺のindexはキー名、右辺は変数
+                                .then((response) => {
+                                    console.log(response.data)
+                                })
+                                .catch((data) =>{
+                                    console.log(data)
+                                })
+            
+                                resolve();
+                            }, 100);
+                        })
+                }}
+                options={{
+                    search: false
+                }}
+            />
+            {/* <div className="bop" > */}
+                    {/* <Grid container spacing={3} justify="flex-end">
+                        <Grid container item rowSpacing={5} columnSpacing={{ xs: 1, sm: 2, md: 3 }} > 
+                            <React.Fragment>
+                                < Grid item xs={4} > 
+                                    <Item><br />abc<br /></Item>
+                                </Grid>
+                            </React.Fragment>
+                        </Grid>
+                    </Grid> */}
+                    <Card sx={{ minWidth: 200 }} style={{float: "right", height: '60px'}}>
+                        <CardContent >
+                            {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            Word of the Day
+                            </Typography> */}
+                            {/* <Typography align="center" sx={{ fontSize: 18 }} style={bop < 0 ? { color: "#ff0000" } : {}}> */}
+                            <div style={{fontSize: 17}}>
+                                <span class="mgr-10">収支 :</span>
+                                    {bop>0 
+                                        ? <span>+{bop.toLocaleString()}</span>
+                                        : <span class="red">{bop.toLocaleString()}</span>
+                                    }   
+                            </div>
+                            {/* </Typography> */}
+                        </CardContent>
+                    </Card>
+            {/* </div> */}
 
                 <div className="download_btn">
-                    <ExcelFile filename={props.match.params.date + "黒い砂漠帳簿"} element={<Button variant="contained"style={{backgroundColor: "#1e90ff", color: "white"}}>Excel出力</Button>}>
+                    <ExcelFile filename={props.match.params.date + "黒い砂漠帳簿"} element={<Button variant="contained" style={{backgroundColor: "#1e90ff", color: "white"}}>Excel出力</Button>}>
                         <ExcelSheet data={book} name="帳簿">
                             <ExcelColumn label="アイテム名" value="name" style={{ font: {sz: "24", name: "MS PGothic"} }}/>
                             <ExcelColumn label="価格" value="pricePerOne"/>
@@ -247,7 +280,6 @@ export default function Book3(props) {
                         </ExcelSheet>
                     </ExcelFile>
                 </div>
-            </div>
         </div>
     );
 }
