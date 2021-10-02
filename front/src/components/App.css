@@ -37,11 +37,15 @@
   }
 }
 
-.bookList {
+.container {
   height: 400px;
   width: 810px;
   padding: 30px 70px;
   margin: auto;
+}
+
+.book-list {
+  padding-top: 30px;
 }
 
 .book-item {
@@ -80,3 +84,20 @@
   top: 20px;
   margin-left: auto;
 }
+
+.box-shadow {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+}
+
+/* .update {
+  padding-bottom: 30px;
+} */
+
+.status-msg {
+  padding-top: 10px;
+  padding-left: 50px;
+}
+
+/* .start_btn {
+  padding:1em 1em;
+} */

@@ -4,17 +4,17 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
+import Button from '@material-ui/core/Button';
 import Typography from '@mui/material/Typography';
 
 function BookList(props) {
 
     return (
-        <div className='bookList'>
+        <div className="book-list">
           {props.item.map((date) => {
             return (
                 <div className='book-item'>
-                    <Link to={`/book/${date}`}>
+                    <Link to={`/AccountBooks/${date}`}>
                         <div className='book-date' >{date}</div>
                     </Link>
                 </div>
