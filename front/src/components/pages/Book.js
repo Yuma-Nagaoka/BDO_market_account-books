@@ -255,7 +255,7 @@ export default function Book(props) {
                             {/* <Typography align="center" sx={{ fontSize: 18 }} style={bop < 0 ? { color: "#ff0000" } : {}}> */}
                             <div style={{fontSize: 17}}>
                                 <span class="mgr-10">収支 :</span>
-                                    {bop>0 
+                                    {bop>=0 
                                         ? <span>+{bop.toLocaleString()}</span>
                                         : <span class="red">{bop.toLocaleString()}</span>
                                     }   

@@ -7,6 +7,7 @@ import Footer from './modules/Footer'
 import Home from './pages/Home'
 import HowTo from './pages/HowTo'
 import About from './pages/About'
+import Credential from './pages/Credential'
 import { StyledEngineProvider } from '@mui/material/styles';
 // import Icon from '../title.png'
 
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/HowTo" component={HowTo} />
         <Route exact path="/AccountBooks" component={Home} />
         <Route path="/AccountBooks/:date" component={Book} />
+        <Route path="/CredentialUpdate" component={Credential} />
         {/* <Route path="/xlsx" component={MakeXlsx} /> */}
         <Footer />
       </Router>
