@@ -35,6 +35,7 @@ export default function ButtonAppBar() {
             <Button color="inherit" style={{textTransform: 'none'}}　onClick={() => {handleClick('AccountBooks')}}>帳簿</Button>
             <Button color="inherit" style={{textTransform: 'none'}}　onClick={() => {handleClick('')}}>About</Button>
             <Button color="inherit" style={{textTransform: 'none'}}　onClick={() => {handleClick('HowTo')}}>使い方</Button>
+            <Button color="inherit" style={{textTransform: 'none'}}　onClick={() => {handleClick('CredentialUpdate')}}>認証情報の更新</Button>
             </Toolbar>
         </AppBar>
         </Box>

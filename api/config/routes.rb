@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   post 'account_books/:date', to: 'account_books#create'
   delete 'account_books/:date', to: 'account_books#destroy'
   patch 'account_books/:date', to: 'account_books#update'
+  post 'credential_update', to: 'cookies#update'
 end

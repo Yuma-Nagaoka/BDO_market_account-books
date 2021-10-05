@@ -41,7 +41,7 @@ export default function Home() {
                     console.log(data)
                     })
                 }else if(results.status == 200) {
-                    setResultStatus(results.data.error.msg + '\nクッキーを更新してください') 
+                    setResultStatus(results.data.error.msg + '\n認証情報を更新してください') 
                 }else {
                     setResultStatus("統合取引所帳簿のデータ更新に失敗しました。") 
                 }
@@ -50,7 +50,7 @@ export default function Home() {
             })
             .catch((data) =>{
                 console.log(data)
-                setResultStatus("統合取引所帳簿のデータ更新に失敗しました。") 
+                setResultStatus("統合取引所帳簿のデータ更新に失敗しました。\n認証情報の入力が間違っている可能性があります。") 
                 setOnUpdate(false); 
             })
         }, 1000)
