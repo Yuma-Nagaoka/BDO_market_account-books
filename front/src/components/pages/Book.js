@@ -112,7 +112,7 @@ export default function Book(props) {
         .then((results) => {
             setBook(results.data.items)
             setBop(results.data.BOP)
-            setBop_arr([{"BOP": results.data.BOP}])
+            setBop_arr([{"BOP": results.data.BOP.toLocaleString()}])
             
         })
         .catch((data) =>{
