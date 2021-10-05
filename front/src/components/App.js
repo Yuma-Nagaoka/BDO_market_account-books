@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Book from './pages/Book'
-import Book3 from './pages/Book3'
 import Header from './modules/Header'
 import Footer from './modules/Footer'
 import Home from './pages/Home'
@@ -30,7 +29,7 @@ export default function App() {
         <Route path="/About" component={About} />
         <Route path="/HowTo" component={HowTo} />
         <Route exact path="/AccountBooks" component={Home} />
-        <Route path="/AccountBooks/:date" component={Book3} />
+        <Route path="/AccountBooks/:date" component={Book} />
         {/* <Route path="/xlsx" component={MakeXlsx} /> */}
         <Footer />
       </Router>
