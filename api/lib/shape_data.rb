@@ -92,7 +92,7 @@ class Shape_data
                         old_unsettled.store("date", dt.strftime("%Y-%m-%d"))
                         old_unsettled.store("time", dt.strftime("%H:%M:%S"))
                         @@data_bdo.setSettledList(old_unsettled)
-                        p "以下を挿入しました。", @@data_bdo.getSettledList
+                        p "以下が書き込む予定のデータです。", @@data_bdo.getSettledList
                     end
                 #    
                 end
@@ -110,7 +110,9 @@ class Shape_data
             end
 
             p "old", old_settledList[0]
-            old_settledList.push(@@data_bdo.getSettledList[0]) 
+            @@data_bdo.getSettledList.each do |row|
+                old_settledList.push(row)
+            end 
             new_settledList = old_settledList
             # p "new", new_settledList[0]
             
