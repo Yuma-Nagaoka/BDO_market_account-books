@@ -123,7 +123,7 @@ class Shape_data
                 p "new", new_settledList
                 file.puts(JSON.pretty_generate(new_settledList))
             end
-            @@data_bdo.initSettledList()
+            # @@data_bdo.initSettledList()          #initはaccoountbook作成後に実行
         elsif !File.exist?("./outputs/SettledList/#{dt.strftime("%Y-%m-%d")}_settledList.json")  #新しく生産されたものがないかつ、settledList.jsonファイルがない場合
             File.open("./outputs/SettledList/#{dt.strftime("%Y-%m-%d")}_settledList.json", "w") do |file|
                 file.puts(JSON.pretty_generate([]))
@@ -188,54 +188,85 @@ class Shape_data
     def makeAccountBook
         dt = DateTime.now
         balance_of_payments = 0
+        old_accountBook = []
 
         puts "Making account book..."
 
-        File.open("./outputs/SettledList/#{dt.strftime("%Y-%m-%d")}_settledList.json") do |file| 
-            # p @@data_bdo.getSoldList()[0], "\n"
-            settledList = JSON.load(file)
-            account_hash = {}
-            account_array = []
+        account_hash = {}
+        account_array = []
+
+        @@data_bdo.getSettledList.each do |settled, index| #getSettledListrを使って、新しく清算されたものだけを1種類ずつ加工する
             
-            settledList.each_with_index do |settled, index|
-                bought_or_sold = ""
-                buy_or_sell_jp = "" 
-                # p settled["sellNo"]
-                # p @@data_bdo.getsettledList()
-                if !settled["sellNo"].nil?
-                    buy_or_sell_jp = "販売"
-                    bought_or_sold = "sold"
-                elsif !settled["buyNo"].nil?
-                    buy_or_sell_jp = "購入"
-                    bought_or_sold = "bought"
-                end
-
-                account = {}
-                account.store("id", index)
-                account.store("date", dt.strftime("%Y-%m-%d"))
-                account.store("time", dt.strftime("%H:%M:%S"))
-                account.store("type", buy_or_sell_jp) 
-                account.store("name", settled["name"])
-                account.store("pricePerOne", settled["pricePerOne"].to_s(:delimited))
-                account.store("tradeCount", settled["#{bought_or_sold}Count"].to_s(:delimited))
-                accumulateMoneyCount = settled["#{bought_or_sold}Count"] * settled["pricePerOne"] 
-                account.store("accumulateMoneyCount", accumulateMoneyCount.to_s(:delimited))
-                account_array.push(account)
-                
-                balance_of_payments += accumulateMoneyCount if !settled["sellNo"].nil?
-                balance_of_payments -= accumulateMoneyCount if !settled["buyNo"].nil?
+            bought_or_sold = ""
+            buy_or_sell_jp = "" 
+            # p settled["sellNo"]
+            # p @@data_bdo.getsettledList()
+            if !settled["sellNo"].nil?
+                buy_or_sell_jp = "販売"
+                bought_or_sold = "sold"
+            elsif !settled["buyNo"].nil?
+                buy_or_sell_jp = "購入"
+                bought_or_sold = "bought"
             end
-            account_hash.store("items", account_array)
-            account_hash.store("BOP", balance_of_payments)
-            @@data_bdo.setAccountBook(account_hash)
+
+            account = {}
+            account.store("id", index)
+            account.store("date", dt.strftime("%Y-%m-%d"))
+            account.store("time", dt.strftime("%H:%M:%S"))
+            account.store("type", buy_or_sell_jp) 
+            account.store("name", settled["name"])
+            account.store("pricePerOne", settled["pricePerOne"].to_s(:delimited))
+            account.store("tradeCount", settled["#{bought_or_sold}Count"].to_s(:delimited))
+            accumulateMoneyCount = settled["#{bought_or_sold}Count"] * settled["pricePerOne"] 
+            account.store("accumulateMoneyCount", accumulateMoneyCount.to_s(:delimited))
+            account_array.push(account)
+            
+            balance_of_payments += accumulateMoneyCount if !settled["sellNo"].nil?
+            balance_of_payments -= accumulateMoneyCount if !settled["buyNo"].nil?
         end
 
-        File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json", "w") do |file|
-            file.puts(JSON.pretty_generate(@@data_bdo.getAccountBook))
+        account_hash.store("items", account_array)
+        account_hash.store("BOP", balance_of_payments)
+        @@data_bdo.setAccountBook(account_hash)
+
+        #accountBookの更新及び出力(jsonファイルは追記するとややこしいため、ファイルを読み込んでruby上で追記してから上書きしている)
+        if !@@data_bdo.getSettledList.empty?    #新しく清算されたものがある際の処理
+            if File.exist?("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json") then
+                File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json") do |file|
+                    old_accountBook = JSON.load(file)
+                end
+            end
+
+            #itemsの書き換え
+            p "old", old_accountBook["items"]
+            @@data_bdo.getAccountBook["items"].each do |row|
+                old_accountBook["items"].push(row)
+            end 
+            #BOPの書き換え
+            p "old", old_accountBook["BOP"]
+            old_accountBook.store("BOP", @@data_bdo.getAccountBook["BOP"].to_i + old_accountBook["BOP"].to_i)
+
+            new_accountBook = old_accountBook
+            # p "new", new_accountBook[0]
+            
+            File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json", "w") do |file|
+                if new_accountBook.nil?
+                    new_accountBook = []
+                end
+                p "new", new_accountBook
+                file.puts(JSON.pretty_generate(new_accountBook))
+            end
+            @@data_bdo.initSettledList()
+        elsif !File.exist?("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json")  #新しく生産されたものがないかつ、accountBook.jsonファイルがない場合
+            File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json", "w") do |file|
+                file.puts(JSON.pretty_generate([]))
+            end
         end
-        # File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_balance_of_payments.txt", "w") do |file|
-        #     src = {"date" => dt.strftime("%Y-%m-%d"), "BOP" => balance_of_payments}
-        #     file.puts(src)
+        #
+
+
+        # File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json", "w") do |file|
+        #     file.puts(JSON.pretty_generate(@@data_bdo.getAccountBook))
         # end
 
         puts "Making account book has finished"

@@ -6,6 +6,7 @@ class Create_data
         old_accountBook = []
         new_accountBook = []
         dt = DateTime.now
+        bop = 0
 
         File.open("./outputs/AccountBooks/#{params[:date]}_accountBook.json") do |file|
             old_accountBook = JSON.load(file)
@@ -23,10 +24,20 @@ class Create_data
         new_item.store("accumulateMoneyCount", params[:accumulateMoneyCount].to_i.to_s(:delimited))
         old_accountBook["items"].push(new_item)
 
-        old_accountBook.store("BOP", old_accountBook["BOP"] + params[:accumulateMoneyCount].to_i) if params[:type] == "sell"
-        old_accountBook.store("BOP", old_accountBook["BOP"] - params[:accumulateMoneyCount].to_i) if params[:type] == "buy"
+        # old_accountBook["BOP"] = old_accountBook["BOP"].to_i + params[:accumulateMoneyCount].delete(",").to_i if params[:type] == "販売"
+        # old_accountBook["BOP"] = old_accountBook["BOP"].to_i - params[:accumulateMoneyCount].delete(",").to_i if params[:type] == "購入"
+
+        # p "BOP", old_accountBook["BOP"]
 
         new_accountBook = old_accountBook
+
+        #収支の更新
+        new_accountBook["items"].each do |item|
+            bop += item["accumulateMoneyCount"].delete(",").to_i if item["type"] == "販売"
+            bop -= item["accumulateMoneyCount"].delete(",").to_i if item["type"] == "購入"
+        end
+        new_accountBook.store("BOP", bop)
+        #
         
         File.open("./outputs/AccountBooks/#{params[:date]}_accountBook.json", "w") do |file|
             if new_accountBook.nil?
