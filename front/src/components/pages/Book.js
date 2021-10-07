@@ -122,6 +122,19 @@ export default function Book(props) {
 
     },[])
 
+    const getData = () => {
+        client.get('/account_books/' + props.match.params.date)
+        .then((results) => {
+            setBook(results.data.items)
+            setBop(results.data.BOP)
+            setBop_arr([{"BOP": results.data.BOP.toLocaleString()}])
+            
+        })
+        .catch((data) =>{
+        console.log(data)
+        })
+    }
+
     // const handleAdd = () => {
     //     setBook([...book, {
     //         "id": book.length,
@@ -177,7 +190,12 @@ export default function Book(props) {
                     onRowAdd: newBook =>
                         new Promise((resolve, reject) => {
                             setTimeout(() => {
-                                setBook([...book, bookFormat(newBook)]);
+                                // setBook([...book, bookFormat(newBook)]);
+                                // if (newBook.type == "販売") {
+                                //     setBop(bop + parseInt(newBook.accumulateMoneyCount))
+                                // }else if (newBook.type == "購入") {
+                                //     setBop(bop - parseInt(newBook.accumulateMoneyCount))
+                                // }
                                 console.log(newBook)
 
                                 client.post('/account_books/' + props.match.params.date, newBook)
@@ -187,9 +205,11 @@ export default function Book(props) {
                                 .catch((data) =>{
                                     console.log(data)
                                 })
-                                
+                                getData();
+
                                 resolve();
                             }, 100);
+                            
                         }),
                     onRowUpdate: (newBook, oldBook) =>
                         new Promise((resolve, reject) => {
@@ -198,6 +218,7 @@ export default function Book(props) {
                                 const index = oldBook.tableData.id;
                                 bookUpdate[index] = bookFormat(newBook);
                                 setBook([...bookUpdate]);
+                                
 
                                 // const url_update = 'http://localhost:3001/account_books/' + props.match.params.date;
                                 newBook.index= index
@@ -208,7 +229,8 @@ export default function Book(props) {
                                 .catch((data) =>{
                                     console.log(data)
                                 })
-            
+                                getData();
+
                                 resolve();
                             }, 100);
                         }),
@@ -217,8 +239,13 @@ export default function Book(props) {
                             setTimeout(() => {
                                 const bookDelete = [...book];
                                 const index = oldBook.tableData.id; //oldBook.tableData.idはidというよりindex.配列の番号そのもの
-                                bookDelete.splice(index, 1);
-                                setBook([...bookDelete]);
+                                // bookDelete.splice(index, 1);
+                                // setBook([...bookDelete]);
+                                // if (newBook.type == "販売") {
+                                //     setBop(bop - parseInt(newBook.accumulateMoneyCount))
+                                // }else if (newBook.type == "購入") {
+                                //     setBop(bop + parseInt(newBook.accumulateMoneyCount))
+                                // }
 
                                 // const url_delete = 'http://localhost:3001/account_books/' + props.match.params.date;
                                 client.delete('/account_books/' + props.match.params.date, {data: {index: index}}) //左辺のindexはキー名、右辺は変数
@@ -228,6 +255,7 @@ export default function Book(props) {
                                 .catch((data) =>{
                                     console.log(data)
                                 })
+                                getData();
             
                                 resolve();
                             }, 100);
