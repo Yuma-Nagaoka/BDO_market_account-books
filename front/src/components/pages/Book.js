@@ -164,12 +164,12 @@ export default function Book(props) {
         <div className="container" style={{ maxWidth: "100%" }}>
             <MaterialTable icons={tableIcons} title={props.match.params.date}
                 columns={[
-                { title: "アイテム名", field: "name" },
+                { title: "アイテム名", field: "name", width: "100%", headerStyle: { whiteSpace: 'nowrap' } },
                 { title: "価格", field: "pricePerOne"},
-                { title: "個数", field: "tradeCount"},
+                { title: "個数", field: "tradeCount", headerStyle: { whiteSpace: 'nowrap' }},
                 { title: "小計", field: "accumulateMoneyCount"},
-                { title: "清算時", field: "time" },
-                { title: "購入/販売", field: "type", lookup: { '購入': '購入', '販売': '販売' },},
+                { title: "清算時", field: "time" , headerStyle: { whiteSpace: 'nowrap' }},
+                { title: "購入/販売", field: "type", headerStyle: { whiteSpace: 'nowrap' }, lookup: { '購入': '購入', '販売': '販売' },},
                 ]}
                 data={book}
                 editable={{
@@ -265,33 +265,22 @@ export default function Book(props) {
                     search: false
                 }}
             />
-            {/* <div className="bop" > */}
-                    {/* <Grid container spacing={3} justify="flex-end">
-                        <Grid container item rowSpacing={5} columnSpacing={{ xs: 1, sm: 2, md: 3 }} > 
-                            <React.Fragment>
-                                < Grid item xs={4} > 
-                                    <Item><br />abc<br /></Item>
-                                </Grid>
-                            </React.Fragment>
-                        </Grid>
-                    </Grid> */}
-                    <Card sx={{ minWidth: 200 }} style={{float: "right", height: '60px'}}>
-                        <CardContent >
-                            {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            Word of the Day
-                            </Typography> */}
-                            {/* <Typography align="center" sx={{ fontSize: 18 }} style={bop < 0 ? { color: "#ff0000" } : {}}> */}
-                            <div style={{fontSize: 17}}>
-                                <span class="mgr-10">収支 :</span>
-                                    {bop>=0 
-                                        ? <span>+{bop.toLocaleString()}</span>
-                                        : <span class="red">{bop.toLocaleString()}</span>
-                                    }   
-                            </div>
-                            {/* </Typography> */}
-                        </CardContent>
-                    </Card>
-            {/* </div> */}
+                <Card sx={{ minWidth: 200 }} style={{float: "right", height: '60px', marginTop: '10px'}}>
+                    <CardContent >
+                        {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        Word of the Day
+                        </Typography> */}
+                        {/* <Typography align="center" sx={{ fontSize: 18 }} style={bop < 0 ? { color: "#ff0000" } : {}}> */}
+                        <div style={{fontSize: 17}}>
+                            <span class="mgr-10">収支 :</span>
+                                {bop>=0 
+                                    ? <span>+{bop.toLocaleString()}</span>
+                                    : <span class="red">{bop.toLocaleString()}</span>
+                                }   
+                        </div>
+                        {/* </Typography> */}
+                    </CardContent>
+                </Card>
 
                 <div className="download_btn">
                     <ExcelFile filename={props.match.params.date + "黒い砂漠帳簿"} element={<Button variant="contained" style={{backgroundColor: "#1e90ff", color: "white"}}>Excel出力</Button>}>
