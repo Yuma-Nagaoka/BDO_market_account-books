@@ -122,18 +122,18 @@ export default function Book(props) {
 
     },[])
 
-    const getData = () => {
-        client.get('/account_books/' + props.match.params.date)
-        .then((results) => {
-            setBook(results.data.items)
-            setBop(results.data.BOP)
-            setBop_arr([{"BOP": results.data.BOP.toLocaleString()}])
+    // const getData = () => {
+    //     client.get('/account_books/' + props.match.params.date)
+    //     .then((results) => {
+    //         setBook(results.data.items)
+    //         setBop(results.data.BOP)
+    //         setBop_arr([{"BOP": results.data.BOP.toLocaleString()}])
             
-        })
-        .catch((data) =>{
-        console.log(data)
-        })
-    }
+    //     })
+    //     .catch((data) =>{
+    //     console.log(data)
+    //     })
+    // }
 
     // const handleAdd = () => {
     //     setBook([...book, {
@@ -189,7 +189,7 @@ export default function Book(props) {
                     onRowUpdateCancelled: rowData => console.log('Row editing cancelled'),
                     onRowAdd: newBook =>
                         new Promise((resolve, reject) => {
-                            setTimeout(() => {
+                            // setTimeout(() => {
                                 // setBook([...book, bookFormat(newBook)]);
                                 // if (newBook.type == "販売") {
                                 //     setBop(bop + parseInt(newBook.accumulateMoneyCount))
@@ -199,21 +199,22 @@ export default function Book(props) {
                                 console.log(newBook)
 
                                 client.post('/account_books/' + props.match.params.date, newBook)
-                                .then((response) => {
-                                    console.log(response.data)
+                                .then((results) => {
+                                    setBook(results.data.items)
+                                    setBop(results.data.BOP)
+                                    setBop_arr([{"BOP": results.data.BOP.toLocaleString()}])
                                 })
                                 .catch((data) =>{
                                     console.log(data)
                                 })
-                                getData();
 
                                 resolve();
-                            }, 100);
+                            // }, 100);
                             
                         }),
                     onRowUpdate: (newBook, oldBook) =>
                         new Promise((resolve, reject) => {
-                            setTimeout(() => {
+                            // setTimeout(() => {
                                 const bookUpdate = [...book];
                                 const index = oldBook.tableData.id;
                                 bookUpdate[index] = bookFormat(newBook);
@@ -223,20 +224,21 @@ export default function Book(props) {
                                 // const url_update = 'http://localhost:3001/account_books/' + props.match.params.date;
                                 newBook.index= index
                                 client.patch('/account_books/' + props.match.params.date, newBook)
-                                .then((response) => {
-                                    console.log(response.data)
+                                .then((results) => {
+                                    setBook(results.data.items)
+                                    setBop(results.data.BOP)
+                                    setBop_arr([{"BOP": results.data.BOP.toLocaleString()}])
                                 })
                                 .catch((data) =>{
                                     console.log(data)
                                 })
-                                getData();
 
                                 resolve();
-                            }, 100);
+                            // }, 100);
                         }),
                     onRowDelete: oldBook =>
                         new Promise((resolve, reject) => {
-                            setTimeout(() => {
+                            // setTimeout(() => {
                                 const bookDelete = [...book];
                                 const index = oldBook.tableData.id; //oldBook.tableData.idはidというよりindex.配列の番号そのもの
                                 // bookDelete.splice(index, 1);
@@ -249,16 +251,17 @@ export default function Book(props) {
 
                                 // const url_delete = 'http://localhost:3001/account_books/' + props.match.params.date;
                                 client.delete('/account_books/' + props.match.params.date, {data: {index: index}}) //左辺のindexはキー名、右辺は変数
-                                .then((response) => {
-                                    console.log(response.data)
+                                .then((results) => {
+                                    setBook(results.data.items)
+                                    setBop(results.data.BOP)
+                                    setBop_arr([{"BOP": results.data.BOP.toLocaleString()}])
                                 })
                                 .catch((data) =>{
                                     console.log(data)
                                 })
-                                getData();
             
                                 resolve();
-                            }, 100);
+                            // }, 100);
                         })
                 }}
                 options={{

@@ -30,6 +30,7 @@ class Delete_data
             p "new", new_accountBook
             file.puts(JSON.pretty_generate(new_accountBook))
         end
+        return new_accountBook
     end
 
 end

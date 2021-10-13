@@ -42,17 +42,17 @@ class AccountBooksController < ApplicationController
 
     def create
         create_data = Create_data.new()
-        create_data.proc(params)
+        render json: create_data.proc(params)
     end
 
     def destroy
         delete_data = Delete_data.new()
-        delete_data.proc(params)
+        render json: delete_data.proc(params)
     end
 
     def update
         update_data = Update_data.new()
-        update_data.proc(params)
+        render json: update_data.proc(params)
     end
     # private
 
