@@ -17,9 +17,6 @@ export default function HowTo() {
                 <Typography variant="h5" component="div" sx={{ fontSize: 30}}>
                 使い方
                 </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                編集日時：2021/10/2
-                </Typography>
                 <Typography variant="body2"　sx={{ fontSize: 18}}>
                 <br />
                 1.各日付のカードをクリックすると、該当日の帳簿が表示されます。そこで帳簿の編集、追加、削除が行えます。
@@ -43,9 +40,6 @@ export default function HowTo() {
                 </Typography> */}
                 <Typography variant="h5" component="div" sx={{ fontSize: 30}}>
                 ヒント
-                </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                編集日時：2021/10/2
                 </Typography>
                 <Typography variant="body2"　sx={{ fontSize: 18}}>
                 <br />

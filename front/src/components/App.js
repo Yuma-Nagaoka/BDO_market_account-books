@@ -18,13 +18,14 @@ export default function App() {
   };
   return (
     <div className="App">
+      {/* <div className="backGround"> */}
       <Router>
         <StyledEngineProvider injectFirst>
           <Header />
         </StyledEngineProvider>
         {/* <h1>黒い砂漠　統合取引所　帳簿</h1> */}
         {/* <div align="center">
-          <img src={`${process.env.PUBLIC_URL}/title.png`} alt="Title"></img>
+          <img src={`${process.env.PUBLIC_URL}/title.png`} alt="Title"></img>3
         </div> */}
         <Route exact path="/" component={About} />
         <Route path="/About" component={About} />
@@ -35,6 +36,7 @@ export default function App() {
         {/* <Route path="/xlsx" component={MakeXlsx} /> */}
         <Footer />
       </Router>
+      {/* </div> */}
     </div>
   );
 }
