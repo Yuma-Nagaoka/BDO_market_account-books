@@ -165,9 +165,9 @@ export default function Book(props) {
             <MaterialTable icons={tableIcons} title={props.match.params.date}
                 columns={[
                 { title: "アイテム名", field: "name", width: "100%", headerStyle: { whiteSpace: 'nowrap' } },
-                { title: "価格", field: "pricePerOne"},
+                { title: "価格", field: "pricePerOne", headerStyle: { whiteSpace: 'nowrap' } },
                 { title: "個数", field: "tradeCount", headerStyle: { whiteSpace: 'nowrap' }},
-                { title: "小計", field: "accumulateMoneyCount"},
+                { title: "小計", field: "accumulateMoneyCount", headerStyle: { whiteSpace: 'nowrap' } },
                 { title: "清算時", field: "time" , headerStyle: { whiteSpace: 'nowrap' }},
                 { title: "購入/販売", field: "type", headerStyle: { whiteSpace: 'nowrap' }, lookup: { '購入': '購入', '販売': '販売' },},
                 ]}

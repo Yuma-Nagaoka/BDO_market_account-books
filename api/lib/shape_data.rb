@@ -259,7 +259,14 @@ class Shape_data
             @@data_bdo.initSettledList()
         elsif !File.exist?("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json")  #新しく生産されたものがないかつ、accountBook.jsonファイルがない場合
             File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json", "w") do |file|
-                file.puts(JSON.pretty_generate([]))
+                defaultHash = {
+                    "items": [
+
+                    ],
+                    "BOP": 0
+                }
+
+                file.puts(JSON.pretty_generate(defaultHash))
             end
         end
         #
