@@ -40,12 +40,10 @@ class Create_data
         #
         
         File.open("./outputs/AccountBooks/#{params[:date]}_accountBook.json", "w") do |file|
-            if new_accountBook.nil?
-                new_accountBook = []
-            end
             p "new", new_accountBook
             file.puts(JSON.pretty_generate(new_accountBook))
         end
+        return new_accountBook
     end
 
 end
