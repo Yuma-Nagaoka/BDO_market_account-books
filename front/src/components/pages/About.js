@@ -9,41 +9,47 @@ import { Link, useHistory } from 'react-router-dom'
 
 
 
-export default function HowTo() {
+export default function About() {
     const history = useHistory();
     const handleClick = () => {
         history.push('/AccountBooks');
     }
 
     return (
-        <div className="container">
-            <Card sx={{ minWidth: 275 }}>
-                <CardContent sx={{textAlign: "left"}}>
-                    {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Word of the Day
-                    </Typography> */}
-                    <Typography variant="h5" component="div" sx={{ fontSize: 30}}>
-                    BDO.AccountBooksとは
-                    </Typography>
-                    <br />
-                    <Typography variant="body2"　sx={{ fontSize: 18}}>
-                    <br />
-                    MMORPG、黒い砂漠の帳簿作成アプリです。
-                    <br/><br />
-                    統合取引所で予約購入/販売したアイテムを自動で反映させることができます。
-                    <br />
-                    NPCから購入したり、統合取引所でその場で取引が完了したアイテムに関しては手動で追加してください。
-                    <br /><br/>
-                    お金を貯めることが重要な黒い砂漠。毎日の収支を明確にし、建設的に大金持ちになりましょう。
-                    </Typography>
-                </CardContent>
-            </Card>
-            <br />
-            <div className="start_btn">
-                <Button variant="contained" style={{backgroundColor: "#1e90ff", color: "white"}} onClick={() => {handleClick()}}>
-                    始める</Button>
+        <div className="backGround">
+            <div className="mask">
+            <div className="container">
+                {/* <Card sx={{ minWidth: 275 }}>
+                    <CardContent sx={{textAlign: "left"}}>
+                        <Typography variant="h5" component="div" sx={{ fontSize: 30}}>
+                        BDO.AccountBooksとは
+                        </Typography>
+                        <br />
+                        <Typography variant="body2"　sx={{ fontSize: 18}}>
+                        <br />
+                        MMORPG、黒い砂漠の帳簿作成アプリです。
+                        <br/><br />
+                        統合取引所で予約購入/販売したアイテムを自動で反映させることができます。
+                        <br />
+                        NPCから購入したり、統合取引所でその場で取引が完了したアイテムに関しては手動で追加してください。
+                        <br /><br/>
+                        お金を貯めることが重要な黒い砂漠。毎日の収支を明確にし、建設的に大金持ちになりましょう。
+                        </Typography>
+                    </CardContent>
+                </Card> */}
+                <Typography variant="h5" component="div" sx={{ fontSize: 30, marginTop: '20px', color: 'white'}}>
+                MMORPG 黒い砂漠でお金を貯めたいあなたへ
+                <br /><br />
+                日々の収支を可視化します。
+                </Typography>
+                <br /><br />
+                <div className="start_btn">
+                    <Button variant="contained" size="large" style={{backgroundColor: "#1e90ff", color: "white"}} onClick={() => {handleClick()}}>
+                        始める</Button>
+                </div>
+                <br />
             </div>
-            <br />
+            </div>
         </div>
     );
 }
