@@ -8,4 +8,4 @@ https://bdo-accountbooks.com/
 https://www.youtube.com/watch?v=v66vf2Jan6o
 
 AWS構成図
-https://1drv.ms/u/s!At7tNNuSdVjXgrhfGN7MGDoMgOWyXw?e=bmI1L3
+https://gyazo.com/9a9850292b3e60e9f9692ecbec736fde
