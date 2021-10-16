@@ -123,7 +123,7 @@ class AccountBooksController < ApplicationController
     def dummy
         for day in 11..31 do
             for i in 1..4 do
-                AccountBook.create(user_id: "admin", date: "2021-10-#{day}", type: "購 入", name: "test#{i}", pricePerOne: "1,000", tradeCount: "1", accumulateMoneyCount: "1,000",)   
+                AccountBook.create(user_id: "admin", date: "2021-9-#{day}", type: "購 入", name: "test#{i}", pricePerOne: "1,000", tradeCount: "1", accumulateMoneyCount: "1,000",)   
             end
         end
     end
@@ -138,14 +138,14 @@ class AccountBooksController < ApplicationController
     
     def dummy_bop
         for day in 11..31 do
-            BalanceOfPayment.create(user_id: "admin", date: "2021-10-#{day}", value: 0)
+            BalanceOfPayment.create(user_id: "admin", date: "2021-9-#{day}", value: 0)
         end
     end   
 
     def dummy_bop_del
         for day in 11..31 do
             next if day == 16
-            BalanceOfPayment.find_by(date: "2021-10-#{day}").destroy
+            BalanceOfPayment.find_by(date: "2021-9-#{day}").destroy
         end
     end  
 
