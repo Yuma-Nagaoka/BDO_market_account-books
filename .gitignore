@@ -1,4 +1,7 @@
 メモ/
-api/outputs/
+api/outputs/_backup
+api/outputs/AccountBooks
+api/outputs/SettledList
+api/outputs/test
 front/src/config.js
 
