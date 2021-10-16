@@ -17,7 +17,6 @@ export default function Home() {
     useEffect(() => {
         client.get('/account_books')
         .then((results) => {
-            console.log(results.data)
             setBookList(results.data)
         })
         .catch((data) =>{

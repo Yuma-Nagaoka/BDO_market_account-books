@@ -24,6 +24,6 @@ class Main_make_data
         shape_buy_data = Shape_data.new("buy")
         shape_buy_data.makeUnsettledList
         
-        return shape_data.makeAccountBook
+        shape_data.makeAccountBook
     end
 end

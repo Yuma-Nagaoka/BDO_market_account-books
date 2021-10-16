@@ -1,2 +1,0 @@
-class BalanceOfPayment < ApplicationRecord
-end

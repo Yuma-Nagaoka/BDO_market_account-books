@@ -227,60 +227,56 @@ class Shape_data
 
         account_hash.store("items", account_array)
         account_hash.store("BOP", balance_of_payments)
-        account_hash.store("date", dt.strftime("%Y-%m-%d"))
         @@data_bdo.setAccountBook(account_hash)
-        puts "Making account book has finished"
 
-        return account_hash
+        #accountBookの更新及び出力(jsonファイルは追記するとややこしいため、ファイルを読み込んでruby上で追記してから上書きしている)
+        if !@@data_bdo.getSettledList.empty?    #新しく清算されたものがある際の処理
+            if File.exist?("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json") then
+                File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json") do |file|
+                    old_accountBook = JSON.load(file)
+                end
+            end
 
-        # #accountBookの更新及び出力(jsonファイルは追記するとややこしいため、ファイルを読み込んでruby上で追記してから上書きしている)
-        # if !@@data_bdo.getSettledList.empty?    #新しく清算されたものがある際の処理
-        #     if File.exist?("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json") then
-        #         File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json") do |file|
-        #             old_accountBook = JSON.load(file)
-        #         end
-        #     end
+            #itemsの書き換え
+            p "old", old_accountBook["items"]
+            @@data_bdo.getAccountBook["items"].each do |row|
+                old_accountBook["items"].push(row)
+            end 
+            #BOPの書き換え
+            p "old", old_accountBook["BOP"]
+            old_accountBook.store("BOP", @@data_bdo.getAccountBook["BOP"].to_i + old_accountBook["BOP"].to_i)
 
-        #     #itemsの書き換え
-        #     p "old", old_accountBook["items"]
-        #     @@data_bdo.getAccountBook["items"].each do |row|
-        #         old_accountBook["items"].push(row)
-        #     end 
-        #     #BOPの書き換え
-        #     p "old", old_accountBook["BOP"]
-        #     old_accountBook.store("BOP", @@data_bdo.getAccountBook["BOP"].to_i + old_accountBook["BOP"].to_i)
-
-        #     new_accountBook = old_accountBook
-        #     # p "new", new_accountBook[0]
+            new_accountBook = old_accountBook
+            # p "new", new_accountBook[0]
             
-        #     File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json", "w") do |file|
-        #         if new_accountBook.nil?
-        #             new_accountBook = []
-        #         end
-        #         p "new", new_accountBook
-        #         file.puts(JSON.pretty_generate(new_accountBook))
-        #     end
-        #     @@data_bdo.initSettledList()
-        # elsif !File.exist?("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json")  #新しく生産されたものがないかつ、accountBook.jsonファイルがない場合
-        #     File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json", "w") do |file|
-        #         defaultHash = {
-        #             "items": [
+            File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json", "w") do |file|
+                if new_accountBook.nil?
+                    new_accountBook = []
+                end
+                p "new", new_accountBook
+                file.puts(JSON.pretty_generate(new_accountBook))
+            end
+            @@data_bdo.initSettledList()
+        elsif !File.exist?("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json")  #新しく生産されたものがないかつ、accountBook.jsonファイルがない場合
+            File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json", "w") do |file|
+                defaultHash = {
+                    "items": [
 
-        #             ],
-        #             "BOP": 0
-        #         }
+                    ],
+                    "BOP": 0
+                }
 
-        #         file.puts(JSON.pretty_generate(defaultHash))
-        #     end
-        # end
-        # #
+                file.puts(JSON.pretty_generate(defaultHash))
+            end
+        end
+        #
 
 
         # File.open("./outputs/AccountBooks/#{dt.strftime("%Y-%m-%d")}_accountBook.json", "w") do |file|
         #     file.puts(JSON.pretty_generate(@@data_bdo.getAccountBook))
         # end
 
-        # puts "Making account book has finished"
+        puts "Making account book has finished"
 
     end
 #

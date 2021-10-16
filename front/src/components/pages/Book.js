@@ -215,13 +215,14 @@ export default function Book(props) {
                     onRowUpdate: (newBook, oldBook) =>
                         new Promise((resolve, reject) => {
                             // setTimeout(() => {
-                                // const bookUpdate = [...book];
-                                // const id = oldBook.id;
-                                // bookUpdate.findIndex(({id}) => id === id);
-                                // setBook([...bookUpdate]);
+                                const bookUpdate = [...book];
+                                const index = oldBook.tableData.id;
+                                bookUpdate[index] = bookFormat(newBook);
+                                setBook([...bookUpdate]);
+                                
 
                                 // const url_update = 'http://localhost:3001/account_books/' + props.match.params.date;
-                                // newBook.id = id
+                                newBook.index= index
                                 client.patch('/account_books/' + props.match.params.date, newBook)
                                 .then((results) => {
                                     setBook(results.data.items)
@@ -239,7 +240,7 @@ export default function Book(props) {
                         new Promise((resolve, reject) => {
                             // setTimeout(() => {
                                 const bookDelete = [...book];
-                                const id = oldBook.id; //oldBook.tableData.idはidというよりindex.配列の番号そのもの
+                                const index = oldBook.tableData.id; //oldBook.tableData.idはidというよりindex.配列の番号そのもの
                                 // bookDelete.splice(index, 1);
                                 // setBook([...bookDelete]);
                                 // if (newBook.type == "販売") {
@@ -249,7 +250,7 @@ export default function Book(props) {
                                 // }
 
                                 // const url_delete = 'http://localhost:3001/account_books/' + props.match.params.date;
-                                client.delete('/account_books/' + props.match.params.date, {data: {id: id, accumulateMoneyCount: oldBook.accumulateMoneyCount, type: oldBook.type}}) //左辺のindexはキー名、右辺は変数
+                                client.delete('/account_books/' + props.match.params.date, {data: {index: index}}) //左辺のindexはキー名、右辺は変数
                                 .then((results) => {
                                     setBook(results.data.items)
                                     setBop(results.data.BOP)
