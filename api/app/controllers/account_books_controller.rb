@@ -144,6 +144,7 @@ class AccountBooksController < ApplicationController
 
     def dummy_bop_del
         for day in 11..31 do
+            next if day == 16
             BalanceOfPayment.find_by(date: "2021-10-#{day}").destroy
         end
     end  
