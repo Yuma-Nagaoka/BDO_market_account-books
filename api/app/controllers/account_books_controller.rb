@@ -128,11 +128,26 @@ class AccountBooksController < ApplicationController
         end
     end
 
+    def dummy_del
+        for day in 11..31 do
+            for i in 1..4 do
+                AccountBook.find_by(name: "test#{i}").destroy
+            end
+        end
+    end
+    
     def dummy_bop
         for day in 11..31 do
             BalanceOfPayment.create(user_id: "admin", date: "2021-10-#{day}", value: 0)
         end
     end   
+
+    def dummy_bop_del
+        for day in 11..31 do
+            BalanceOfPayment.find_by(date: "2021-10-#{day}").destroy
+        end
+    end  
+
     # private
 
     # def generate_xlsx

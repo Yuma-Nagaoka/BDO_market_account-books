@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   post 'credential_update', to: 'cookies#update'
   get 'dummy', to: 'account_books#dummy'
   get 'dummy_bop', to: 'account_books#dummy_bop'
+  delete 'dummy', to: 'account_books#dummy_del'
+  delete 'dummy_bop', to: 'account_books#dummy_bop_del'
 end
