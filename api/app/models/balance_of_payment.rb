@@ -1,0 +1,2 @@
+class BalanceOfPayment < ApplicationRecord
+end

@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: MyString
+  index: 
+  date: MyString
+  time: MyString
+  type: 
+  name: MyString
+  pricePerOne: 
+  tradeCount: 
+  accumulateMoneyCount: 
+
+two:
+  user_id: MyString
+  index: 
+  date: MyString
+  time: MyString
+  type: 
+  name: MyString
+  pricePerOne: 
+  tradeCount: 
+  accumulateMoneyCount: 
