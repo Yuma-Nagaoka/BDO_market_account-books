@@ -119,6 +119,20 @@ class AccountBooksController < ApplicationController
 
         show()
     end
+    #データベーステスト用ダミー作成
+    def dummy
+        for day in 11..31 do
+            for i in 1..4 do
+                AccountBook.create(user_id: "admin", date: "2021-10-#{day}", type: "購 入", name: "test#{i}", pricePerOne: "1,000", tradeCount: "1", accumulateMoneyCount: "1,000",)   
+            end
+        end
+    end
+
+    def dummy_bop
+        for day in 11..31 do
+            BalanceOfPayment.create(user_id: "admin", date: "2021-10-#{day}", value: 0)
+        end
+    end   
     # private
 
     # def generate_xlsx
