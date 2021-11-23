@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   delete 'account_books/:date', to: 'account_books#destroy'
   patch 'account_books/:date', to: 'account_books#update'
   post 'credential_update', to: 'cookies#update'
+  get 'dummy', to: 'account_books#dummy'
+  get 'dummy_bop', to: 'account_books#dummy_bop'
+  delete 'dummy', to: 'account_books#dummy_del'
+  delete 'dummy_bop', to: 'account_books#dummy_bop_del'
 end

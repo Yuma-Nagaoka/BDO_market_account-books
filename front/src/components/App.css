@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  position: relative;
 }
 
 .App-logo {
@@ -42,6 +43,7 @@
   width: 810px;
   padding: 30px 70px;
   margin: auto;
+  padding-bottom: 475px;
 }
 
 .backGround {

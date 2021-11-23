@@ -18,25 +18,7 @@ export default function About() {
     return (
         <div className="backGround">
             <div className="mask">
-            <div className="container">
-                {/* <Card sx={{ minWidth: 275 }}>
-                    <CardContent sx={{textAlign: "left"}}>
-                        <Typography variant="h5" component="div" sx={{ fontSize: 30}}>
-                        BDO.AccountBooksとは
-                        </Typography>
-                        <br />
-                        <Typography variant="body2"　sx={{ fontSize: 18}}>
-                        <br />
-                        MMORPG、黒い砂漠の帳簿作成アプリです。
-                        <br/><br />
-                        統合取引所で予約購入/販売したアイテムを自動で反映させることができます。
-                        <br />
-                        NPCから購入したり、統合取引所でその場で取引が完了したアイテムに関しては手動で追加してください。
-                        <br /><br/>
-                        お金を貯めることが重要な黒い砂漠。毎日の収支を明確にし、建設的に大金持ちになりましょう。
-                        </Typography>
-                    </CardContent>
-                </Card> */}
+            <div className="container" style={{paddingBottom: '0px'}}>
                 <Typography variant="h5" component="div" sx={{ fontSize: 30, marginTop: '20px', color: 'white'}}>
                 MMORPG 黒い砂漠でお金を貯めたいあなたへ
                 <br /><br />
