@@ -40,14 +40,6 @@ const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddCircleIcon color="primary" style={{ color: "#1e90ff", fontSize: "40px" }} {...props} ref={ref} />),
-    // Add: forwardRef((props, ref) =>
-    //         <div>
-    //         {/* アイテムの追加 */}
-    //         {/* <Fab size="small" color="primary" aria-label="add" {...props} ref={ref}> */}
-    //             <AddIcon color="primary"/>
-    //         {/* </Fab> */}
-    //         </div> 
-    //     ),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
     Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
     Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
@@ -80,7 +72,6 @@ export default function Book(props) {
     const [book_origin, setBook_origin] = useState([]);
     const [bop, setBop] = useState(0);
     const [bop_arr, setBop_arr] = useState([]);
-    // const url = 'http://localhost:3001/account_books/' + props.match.params.date;
     const client = axios.create({
         baseURL: apiURL
     })
@@ -122,43 +113,7 @@ export default function Book(props) {
 
     },[])
 
-    // const getData = () => {
-    //     client.get('/account_books/' + props.match.params.date)
-    //     .then((results) => {
-    //         setBook(results.data.items)
-    //         setBop(results.data.BOP)
-    //         setBop_arr([{"BOP": results.data.BOP.toLocaleString()}])
-            
-    //     })
-    //     .catch((data) =>{
-    //     console.log(data)
-    //     })
-    // }
-
-    // const handleAdd = () => {
-    //     setBook([...book, {
-    //         "id": book.length,
-    //         "date": "",
-    //         "time": "",
-    //         "type": "",
-    //         "name": "",
-    //         "pricePerOne": 0,
-    //         "boughtCount": 0,
-    //         "accumulateMoneyCount": 0
-    //     }])
-    // }
-
-        // const handleEdit = (index) => (event) => {
-        //     // event.stopPropagation();
-        //     // apiRef.current.setRowMode(index, 'edit');
-        // }
-
-        // const handleDelete = (id) => {
-        //     let arr = [...book];
-        //     arr.splice(id, 1); //このデータにおいて、id=index
-
-        //     setBook(arr);
-        // }
+    
 
     return (
         <div className="container" style={{ maxWidth: "100%" }}>
@@ -173,29 +128,10 @@ export default function Book(props) {
                 ]}
                 data={book}
                 editable={{
-                    // isEditable: rowData => rowData.name === 'a', // only name(a) rows would be editable
-                    // isEditHidden: rowData => rowData.name === 'x',
-                    // isDeletable: rowData => rowData.name === 'b', // only name(b) rows would be deletable,
-                    // isDeleteHidden: rowData => rowData.name === 'y',
-                    // onBulkUpdate: changes => 
-                    //     new Promise((resolve, reject) => {
-                    //         setTimeout(() => {
-                    //             // setBook([...data, newBook]);
-            
-                    //             resolve();
-                    //         }, 1000);
-                    //     }),
                     onRowAddCancelled: rowData => console.log('Row adding cancelled'),
                     onRowUpdateCancelled: rowData => console.log('Row editing cancelled'),
                     onRowAdd: newBook =>
                         new Promise((resolve, reject) => {
-                            // setTimeout(() => {
-                                // setBook([...book, bookFormat(newBook)]);
-                                // if (newBook.type == "販売") {
-                                //     setBop(bop + parseInt(newBook.accumulateMoneyCount))
-                                // }else if (newBook.type == "購入") {
-                                //     setBop(bop - parseInt(newBook.accumulateMoneyCount))
-                                // }
                                 console.log(newBook)
 
                                 client.post('/account_books/' + props.match.params.date, newBook)
@@ -209,19 +145,9 @@ export default function Book(props) {
                                 })
 
                                 resolve();
-                            // }, 100);
-                            
                         }),
                     onRowUpdate: (newBook, oldBook) =>
                         new Promise((resolve, reject) => {
-                            // setTimeout(() => {
-                                // const bookUpdate = [...book];
-                                // const id = oldBook.id;
-                                // bookUpdate.findIndex(({id}) => id === id);
-                                // setBook([...bookUpdate]);
-
-                                // const url_update = 'http://localhost:3001/account_books/' + props.match.params.date;
-                                // newBook.id = id
                                 client.patch('/account_books/' + props.match.params.date, newBook)
                                 .then((results) => {
                                     setBook(results.data.items)
@@ -233,22 +159,11 @@ export default function Book(props) {
                                 })
 
                                 resolve();
-                            // }, 100);
                         }),
                     onRowDelete: oldBook =>
                         new Promise((resolve, reject) => {
-                            // setTimeout(() => {
                                 const bookDelete = [...book];
                                 const id = oldBook.id; //oldBook.tableData.idはidというよりindex.配列の番号そのもの
-                                // bookDelete.splice(index, 1);
-                                // setBook([...bookDelete]);
-                                // if (newBook.type == "販売") {
-                                //     setBop(bop - parseInt(newBook.accumulateMoneyCount))
-                                // }else if (newBook.type == "購入") {
-                                //     setBop(bop + parseInt(newBook.accumulateMoneyCount))
-                                // }
-
-                                // const url_delete = 'http://localhost:3001/account_books/' + props.match.params.date;
                                 client.delete('/account_books/' + props.match.params.date, {data: {id: id, accumulateMoneyCount: oldBook.accumulateMoneyCount, type: oldBook.type}}) //左辺のindexはキー名、右辺は変数
                                 .then((results) => {
                                     setBook(results.data.items)
@@ -260,7 +175,6 @@ export default function Book(props) {
                                 })
             
                                 resolve();
-                            // }, 100);
                         })
                 }}
                 options={{
@@ -269,10 +183,6 @@ export default function Book(props) {
             />
                 <Card sx={{ minWidth: 200 }} style={{float: "right", height: '60px', marginTop: '10px'}}>
                     <CardContent >
-                        {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        Word of the Day
-                        </Typography> */}
-                        {/* <Typography align="center" sx={{ fontSize: 18 }} style={bop < 0 ? { color: "#ff0000" } : {}}> */}
                         <div style={{fontSize: 17}}>
                             <span class="mgr-10">収支 :</span>
                                 {bop>=0 
@@ -280,7 +190,6 @@ export default function Book(props) {
                                     : <span class="red">{bop.toLocaleString()}</span>
                                 }   
                         </div>
-                        {/* </Typography> */}
                     </CardContent>
                 </Card>
 

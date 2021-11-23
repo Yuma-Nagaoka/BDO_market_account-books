@@ -36,7 +36,7 @@ export default function Credential() {
     }
 
     return (
-        <div className="credential">
+        <div className="container">
             <br />
             統合取引所にログインし、二次パスワード入力後のクッキーを入力してください。
             <Box
