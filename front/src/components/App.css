@@ -57,7 +57,7 @@
 
 .mask {
   position: absolute;
-  height: 70vh; /* 全画面表示 */
+  height: 60%; /* 全画面表示 */
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
