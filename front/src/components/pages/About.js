@@ -14,7 +14,7 @@ export default function About() {
         history.push('/AccountBooks');
     }
 //windowサイズによって初期のmaskの高さを決める
-    const [maskHeight, setMaskHeight] = window.innerHeight > 900 ? React.useState({height: '75%'}) : React.useState({height: '60%'});
+    const [maskHeight, setMaskHeight] = React.useState(window.innerHeight > 900 ? {height: '75%'} : {height: '60%'});
 //windowサイズが変更されるとmaskの高さも動的に変更する
     window.addEventListener('resize', function () {
         window.innerHeight > 900 ? setMaskHeight({height: '75%'}) : setMaskHeight({height: '60%'})
