@@ -24,10 +24,6 @@ class Create_data
         new_item.store("accumulateMoneyCount", params[:accumulateMoneyCount].to_i.to_s(:delimited))
         old_accountBook["items"].push(new_item)
 
-        # old_accountBook["BOP"] = old_accountBook["BOP"].to_i + params[:accumulateMoneyCount].delete(",").to_i if params[:type] == "販売"
-        # old_accountBook["BOP"] = old_accountBook["BOP"].to_i - params[:accumulateMoneyCount].delete(",").to_i if params[:type] == "購入"
-
-        # p "BOP", old_accountBook["BOP"]
 
         new_accountBook = old_accountBook
 
